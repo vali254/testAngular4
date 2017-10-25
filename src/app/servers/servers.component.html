@@ -1,5 +1,51 @@
 <p>
   servers works!
 </p>
+<label for="addNewServerInput">New server name: </label>
+<input
+  id="addNewServerInput"
+  type="text"
+  class="form-control"
+  [(ngModel)]="serverName"
+  >
+<!--  <p>{{ serverName }}</p>-->
+<button
+  class="btn btn-primary"
+  (click)="onCreateServer()"
+  >Add Server</button>
+<p>{{ serverCreationStatus }} </p>
 <app-server></app-server>
 <app-server></app-server>
+
+<hr>
+<label for="addNewUsername">New Username: </label>
+<input
+  id="addNewUsername"
+  type="text"
+  class="form-control"
+  [(ngModel)]="usernameValue"
+  (input)="onUpdateUsername($event)"
+  >
+  <p>{{ usernameValue }}</p>
+  <button
+    class="btn btn-danger"
+    (click)="onResetUsername()"
+    [disabled]="!canResetUsername"
+    >Reset Username</button>
+  <hr>
+
+  <hr>
+  <button
+    class="btn btn-primary"
+    (click)='changeToogledValue()'
+  >Display Details</button>
+  <p *ngIf='toggledValueForDisplayButton'>{{displayDetailsValue}}</p>
+  <ul>
+    <li *ngFor="let logD of logData">
+    <p
+      [ngStyle]="{backgroundColor: getColor(logD)}"
+      [ngClass]="{selectedRow: getColor(logD) === 'blue'}"
+    >  {{ logD }}</p>
+      </li>
+  </ul>
+  <hr>
